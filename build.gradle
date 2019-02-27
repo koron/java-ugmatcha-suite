@@ -1,0 +1,15 @@
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+
+    group = 'net.kaoriya'
+
+    repositories {
+        jcenter()
+    }
+}

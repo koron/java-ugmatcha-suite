@@ -7,6 +7,7 @@ public class JapaneseTest {
 
     @Test
     public void normalize() {
+        // basic test data from https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja
         assertEquals("0123456789", Japanese.normalize("０１２３４５６７８９"));
         assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", Japanese.normalize("ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"));
         assertEquals("abcdefghijklmnopqrstuvwxyz", Japanese.normalize("ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"));

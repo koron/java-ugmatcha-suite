@@ -28,8 +28,8 @@ public class Japanese {
                 "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ",
                 "abcdefghijklmnopqrstuvwxyz");
         b.putEach(
-                "！”＃＄％＆’（）＊＋，－．／：；＜＝＞？＠［￥］＾＿｀｛｜｝",
-                "!\"#$%&'()*+,-./:;<=>?@[¥]^_`{|}");
+                "　！”＃＄％＆’（）＊＋，－．／：；＜＝＞？＠［￥］＾＿｀｛｜｝",
+                " !\"#$%&'()*+,-./:;<=>?@[¥]^_`{|}");
 
         // map Han-kaku chars to Zen-kaku chars
         b.putEach(

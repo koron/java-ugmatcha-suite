@@ -1,5 +1,6 @@
 package net.kaoriya.ugmatcha.trietree;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -13,6 +14,13 @@ public class StaticTree {
 
     class Filler {
         int z;
+        boolean debug;
+
+        Filler(boolean debug) {
+            this.z = 1;
+            this.debug = debug;
+        }
+
         void fill(int x, DynamicNode dn, int i) {
             int start = 0;
             int end = 0;
@@ -26,6 +34,9 @@ public class StaticTree {
             starts[x] = start;
             ends[x] = end;
             edges[x] = dn.edgeID;
+            if (debug) {
+                System.err.printf("x=%d i=%d n=%d start=%d end=%d dn.label='%c' dn.edgeID=%d\n", x, i, n, start, end, dn.label, dn.edgeID);
+            }
             if (dn.child != null) {
                 final int i2 = i + 1;
                 final int[] y = new int[]{ start };
@@ -46,8 +57,13 @@ public class StaticTree {
     }
 
     public StaticTree(DynamicTree src) {
+        this(src, false);
+    }
+
+    StaticTree(DynamicTree src, boolean debug) {
         this(src.root.countAll());
-        new Filler().fill(0, src.root, 0);
+        Filler f = new Filler(debug);
+        f.fill(0, src.root, 0);
         fillFailure(0);
     }
 
@@ -99,5 +115,13 @@ public class StaticTree {
             sr.emit();
             curr = next;
         }
+    }
+
+    void dump(PrintStream out) {
+        out.println(Arrays.toString(labels));
+        out.println(Arrays.toString(starts));
+        out.println(Arrays.toString(ends));
+        out.println(Arrays.toString(fails));
+        out.println(Arrays.toString(edges));
     }
 }

@@ -2,7 +2,9 @@ package net.kaoriya.ugmatcha.trietree;
 
 public class ScanEvent {
 
-    int index;
-    char label;
-    int[] ids;
+    public int index;
+
+    public char label;
+
+    public int[] ids;
 }

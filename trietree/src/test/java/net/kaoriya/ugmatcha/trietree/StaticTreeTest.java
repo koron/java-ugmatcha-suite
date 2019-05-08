@@ -10,6 +10,13 @@ public class StaticTreeTest {
         return new StaticTree(dt);
     }
 
+    static StaticTree putDbg( String... keys) {
+        DynamicTree dt = DynamicTreeTest.put(keys);
+        StaticTree st = new StaticTree(dt, true);
+        st.dump(System.err);
+        return st;
+    }
+
     void scan(StaticTree tree, String key, ReportT... exp) {
         ReportConsumer rc = new ReportConsumer();
         tree.scan(key, rc);

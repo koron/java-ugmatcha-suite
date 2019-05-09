@@ -45,6 +45,20 @@ public class Japanese {
                 "ｳﾞｶﾞｷﾞｸﾞｹﾞｺﾞｻﾞｼﾞｽﾞｾﾞｿﾞﾀﾞﾁﾞﾂﾞﾃﾞﾄﾞﾊﾞﾋﾞﾌﾞﾍﾞﾎﾞﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ", 2,
                 "ヴガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ", 1);
 
+        // hyphen/minus
+        b.putMap("-",
+                "\u02d7", "\u058a", "\u2010", "\u2011", "\u2012", "\u2013",
+                "\u2043", "\u207b", "\u208b", "\u2212");
+
+        // Zen-kaku 長音
+        b.putMap("ー",
+                "\u2014", "\u2015", "\u2500", "\u2501", "\ufe63", "\uff0d",
+                "\uff70");
+
+        // remove tilde like characters
+        b.putMap("", "~", "∼", "∾", "〜", "〰", "～");
+        // TODO: add more chars.
+
         normalizer = b.build();
     }
 }

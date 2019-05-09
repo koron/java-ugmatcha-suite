@@ -50,6 +50,12 @@ public class Normalizer {
             }
         }
 
+        public void putMap(String dst, String... sources) {
+            for (String src : sources) {
+                put(src, dst);
+            }
+        }
+
         public Normalizer build() {
             StaticTree st = new StaticTree(dt);
             String[] ws = words.toArray(new String[0]);

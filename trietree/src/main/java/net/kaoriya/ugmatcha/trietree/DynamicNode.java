@@ -11,6 +11,7 @@ public class DynamicNode {
     public DynamicNode child;
 
     public int edgeID;
+    public int level;
 
     public DynamicNode failure;
 

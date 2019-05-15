@@ -21,6 +21,7 @@ public class DynamicTree {
             lastEdgeID++;
             n.edgeID = lastEdgeID;
         }
+        n.level = k.length();
         return n.edgeID;
     }
 
@@ -91,7 +92,7 @@ public class DynamicTree {
             sr.reset(i, c);
             for (DynamicNode n = next; n != null; n = n.failure) {
                 if (n.edgeID > 0) {
-                    sr.add(n.edgeID);
+                    sr.add(n.edgeID, n.level);
                 }
             }
             sr.emit();

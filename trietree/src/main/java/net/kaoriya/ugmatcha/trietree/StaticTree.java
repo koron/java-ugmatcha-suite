@@ -12,6 +12,8 @@ public class StaticTree {
     public final int[] fails;
     public final int[] edges;
 
+    public final int[] levels;
+
     class Filler {
         int z;
         boolean debug;
@@ -34,6 +36,9 @@ public class StaticTree {
             starts[x] = start;
             ends[x] = end;
             edges[x] = dn.edgeID;
+            if (dn.edgeID > 0) {
+                levels[dn.edgeID - 1] = dn.level;
+            }
             if (debug) {
                 System.err.printf("x=%d i=%d n=%d start=%d end=%d dn.label='%c' dn.edgeID=%d\n", x, i, n, start, end, dn.label, dn.edgeID);
             }
@@ -48,12 +53,13 @@ public class StaticTree {
         }
     }
 
-    StaticTree(int n) {
+    StaticTree(int n, int edgeNum) {
         labels = new char[n];
         starts = new int[n];
         ends = new int[n];
         fails = new int[n];
         edges = new int[n];
+        levels = new int[edgeNum];
     }
 
     public StaticTree(DynamicTree src) {
@@ -61,7 +67,7 @@ public class StaticTree {
     }
 
     StaticTree(DynamicTree src, boolean debug) {
-        this(src.root.countAll());
+        this(src.root.countAll(), src.lastEdgeID);
         Filler f = new Filler(debug);
         f.fill(0, src.root, 0);
         fillFailure(0);
@@ -108,8 +114,9 @@ public class StaticTree {
             int next = nextNode(curr, c);
             sr.reset(i, c);
             for (int n = next; n > 0; n = fails[n]) {
-                if (edges[n] > 0) {
-                    sr.add(edges[n]);
+                int id = edges[n];
+                if (id > 0) {
+                    sr.add(id, levels[id - 1]);
                 }
             }
             sr.emit();
@@ -123,5 +130,6 @@ public class StaticTree {
         out.println(Arrays.toString(ends));
         out.println(Arrays.toString(fails));
         out.println(Arrays.toString(edges));
+        out.println(Arrays.toString(levels));
     }
 }

@@ -11,7 +11,11 @@ public class Japanese {
      * Normalize a string as Japanese.
      */
     public static String normalize(String s) {
-        return normalizer.normalize(s);
+        return normalizer.normalize(s, false);
+    }
+
+    public static String normalize(String s, boolean debug) {
+        return normalizer.normalize(s, debug);
     }
 
     static {
@@ -52,8 +56,7 @@ public class Japanese {
 
         // Zen-kaku 長音
         b.putMap("ー",
-                "\u2014", "\u2015", "\u2500", "\u2501", "\ufe63", "\uff0d",
-                "\uff70");
+                "\u2014", "\u2015", "\u2500", "\u2501", "\ufe63", "\uff70");
 
         // remove tilde like characters
         b.putMap("", "~", "∼", "∾", "〜", "〰", "～");

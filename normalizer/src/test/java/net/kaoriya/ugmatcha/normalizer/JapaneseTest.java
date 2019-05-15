@@ -19,15 +19,19 @@ public class JapaneseTest {
     public void han2zen() {
         assertEquals("。、・「」", Japanese.normalize("｡､･｢｣"));
         assertEquals("ハンカク", Japanese.normalize("ﾊﾝｶｸ"));
-        //assertEquals("ゼンカク", Japanese.normalize("ｾﾞﾝｶｸ"));
+        assertEquals("ゼンカク", Japanese.normalize("ｾﾞﾝｶｸ"));
     }
 
     @Test
     public void bar() {
         assertEquals("o-o", Japanese.normalize("o₋o"));
         assertEquals("majikaー", Japanese.normalize("majika━"));
-        assertEquals("わい", Japanese.normalize("わ〰い"));
         assertEquals("スーパー", Japanese.normalize("スーパーーーー"));
+    }
+
+    @Test
+    public void tilde() {
+        assertEquals("わい", Japanese.normalize("わ〰い"));
     }
 
     @Test

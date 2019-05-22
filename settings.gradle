@@ -1,5 +1,4 @@
 rootProject.name = 'java-ugmatcha-suite'
 
 include 'trietree'
-include 'ugmatcha'
 include 'normalizer'

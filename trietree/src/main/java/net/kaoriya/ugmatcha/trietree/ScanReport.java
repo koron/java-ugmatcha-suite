@@ -14,7 +14,7 @@ class ScanReport {
         this.consumer = consumer;
     }
 
-    void reset(int index, char label) {
+    void reset(int index, int label) {
         ev.index = index;
         ev.label = label;
         nodes.clear();

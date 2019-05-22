@@ -1,10 +1,11 @@
 package net.kaoriya.ugmatcha.trietree;
 
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 public class DynamicTree {
 
-    public DynamicNode root = new DynamicNode((char)0);
+    public DynamicNode root = new DynamicNode(0);
     
     int lastEdgeID = 0;
 
@@ -13,15 +14,16 @@ public class DynamicTree {
      */
     public int put(String k) {
         DynamicNode n = root;
-        for (int i = 0; i < k.length(); i++) {
-            char c = k.charAt(i);
-            n = n.dig(c);
+        int C = k.codePointCount(0, k.length());
+        for (int i = 0; i < C; i++) {
+            int cp = k.codePointAt(i);
+            n = n.dig(k.codePointAt(i));
         }
         if (n.edgeID <= 0) {
             lastEdgeID++;
             n.edgeID = lastEdgeID;
         }
-        n.level = k.length();
+        n.level = C;
         return n.edgeID;
     }
 
@@ -30,9 +32,10 @@ public class DynamicTree {
      */
     public DynamicNode getNode(String k) {
         DynamicNode n = root;
-        for (int i = 0; i < k.length(); i++) {
-            char c = k.charAt(i);
-            n = n.get(c);
+        int C = k.codePointCount(0, k.length());
+        for (int i = 0; i < C; i++) {
+            int cp = k.codePointAt(i);
+            n = n.get(cp);
             if (n == null) {
                 return null;
             }
@@ -64,7 +67,7 @@ public class DynamicTree {
         });
     }
 
-    DynamicNode nextNode(DynamicNode curr, char label) {
+    DynamicNode nextNode(DynamicNode curr, int label) {
         while (true) {
             DynamicNode next = curr.get(label);
             if (next != null) {
@@ -86,10 +89,11 @@ public class DynamicTree {
     public void scan(String s, Consumer<ScanEvent> consumer) {
         DynamicNode curr = root;
         ScanReport sr = new ScanReport(consumer, s.length());
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            DynamicNode next = nextNode(curr, c);
-            sr.reset(i, c);
+        int C = s.codePointCount(0, s.length());
+        for (int i = 0; i < C; i++) {
+            int cp = s.codePointAt(i);
+            DynamicNode next = nextNode(curr, cp);
+            sr.reset(i, cp);
             for (DynamicNode n = next; n != null; n = n.failure) {
                 if (n.edgeID > 0) {
                     sr.add(n.edgeID, n.level);

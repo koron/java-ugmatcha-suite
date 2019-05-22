@@ -4,7 +4,7 @@ public class ScanEvent {
 
     public int index;
 
-    public char label;
+    public int label; // code point
 
     public NodeInfo[] nodes;
 }

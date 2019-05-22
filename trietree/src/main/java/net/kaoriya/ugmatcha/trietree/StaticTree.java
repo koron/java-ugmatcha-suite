@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 public class StaticTree {
 
-    public final char[] labels;
+    public final int[] labels;
     public final int[] starts;
     public final int[] ends;
     public final int[] fails;
@@ -54,7 +54,7 @@ public class StaticTree {
     }
 
     StaticTree(int n, int edgeNum) {
-        labels = new char[n];
+        labels = new int[n];
         starts = new int[n];
         ends = new int[n];
         fails = new int[n];
@@ -86,7 +86,7 @@ public class StaticTree {
         }
     }
 
-    int nextNode(int x, char label) {
+    int nextNode(int x, int label) {
         while (true) {
             int next = find(starts[x], ends[x], label);
             if (next >= 0) {
@@ -99,7 +99,7 @@ public class StaticTree {
         }
     }
 
-    int find(int start, int end, char label) {
+    int find(int start, int end, int label) {
         return Arrays.binarySearch(labels, start, end, label);
     }
 
@@ -109,10 +109,11 @@ public class StaticTree {
     public void scan(String s, Consumer<ScanEvent> consumer) {
         ScanReport sr = new ScanReport(consumer, s.length());
         int curr = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int next = nextNode(curr, c);
-            sr.reset(i, c);
+        int C = s.codePointCount(0, s.length());
+        for (int i = 0; i < C; i++) {
+            int cp = s.codePointAt(i);
+            int next = nextNode(curr, cp);
+            sr.reset(i, cp);
             for (int n = next; n > 0; n = fails[n]) {
                 int id = edges[n];
                 if (id > 0) {

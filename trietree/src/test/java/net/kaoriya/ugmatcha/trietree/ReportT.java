@@ -45,10 +45,10 @@ public class ReportT {
     }
 
     int index;
-    char label;
+    int label;
     Node[] nodes;
 
-    public ReportT(int index, char label, int... pairsOfIdAndLevel) {
+    public ReportT(int index, int label, int... pairsOfIdAndLevel) {
         this.index = index;
         this.label = label;
         if (pairsOfIdAndLevel != null && pairsOfIdAndLevel.length >= 2) {

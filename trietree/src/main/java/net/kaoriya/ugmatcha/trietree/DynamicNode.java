@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 public class DynamicNode {
 
-    public char label;
+    public int label;
 
     public DynamicNode low;
     public DynamicNode high;
@@ -15,14 +15,14 @@ public class DynamicNode {
 
     public DynamicNode failure;
 
-    DynamicNode(char label) {
+    DynamicNode(int label) {
         this.label = label;
     }
 
     /**
      * dig a child node for label:c.
      */
-    DynamicNode dig(char c) {
+    DynamicNode dig(int c) {
         if (child == null) {
             child = new DynamicNode(c);
             return child;
@@ -48,7 +48,7 @@ public class DynamicNode {
         }
     }
 
-    public DynamicNode get(char c) {
+    public DynamicNode get(int c) {
         for (DynamicNode p = child; p != null;) {
             if (c == p.label) {
                 return p;

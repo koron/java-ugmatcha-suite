@@ -1,7 +1,6 @@
 package net.kaoriya.ugmatcha.trietree;
 
 import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
 public class DynamicTree {
 

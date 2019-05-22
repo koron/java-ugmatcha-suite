@@ -12,22 +12,26 @@ public class JapaneseTest {
         assertEquals("0123456789", Japanese.normalize("０１２３４５６７８９"));
         assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", Japanese.normalize("ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"));
         assertEquals("abcdefghijklmnopqrstuvwxyz", Japanese.normalize("ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"));
-        assertEquals(" !\"#$%&'()*+,-./:;<=>?@[¥]^_`{|}", Japanese.normalize("　！”＃＄％＆’（）＊＋，－．／：；＜＝＞？＠［￥］＾＿｀｛｜｝"));
+        assertEquals("! \"#$%&'()*+,-./:;<=>?@[¥]^_`{|}", Japanese.normalize("！　”＃＄％＆’（）＊＋，－．／：；＜＝＞？＠［￥］＾＿｀｛｜｝"));
     }
 
     @Test
     public void han2zen() {
         assertEquals("。、・「」", Japanese.normalize("｡､･｢｣"));
         assertEquals("ハンカク", Japanese.normalize("ﾊﾝｶｸ"));
-        //assertEquals("ゼンカク", Japanese.normalize("ｾﾞﾝｶｸ"));
+        assertEquals("ゼンカク", Japanese.normalize("ｾﾞﾝｶｸ"));
     }
 
     @Test
     public void bar() {
         assertEquals("o-o", Japanese.normalize("o₋o"));
         assertEquals("majikaー", Japanese.normalize("majika━"));
-        assertEquals("わい", Japanese.normalize("わ〰い"));
         assertEquals("スーパー", Japanese.normalize("スーパーーーー"));
+    }
+
+    @Test
+    public void tilde() {
+        assertEquals("わい", Japanese.normalize("わ〰い"));
     }
 
     @Test
@@ -47,6 +51,6 @@ public class JapaneseTest {
         // basic test data from https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja
         assertEquals("!#", Japanese.normalize("!#"));
         assertEquals("南アルプスの天然水Sparking Lemonレモン一絞り", Japanese.normalize("南アルプスの　天然水　Ｓｐａｒｋｉｎｇ　Ｌｅｍｏｎ　レモン一絞り"));
-        assertEquals("南アルプスの天然水-Sparking*Lemon+レモン一絞り", Japanese.normalize("南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り"));
+        //assertEquals("南アルプスの天然水-Sparking*Lemon+レモン一絞り", Japanese.normalize("南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り"));
     }
 }

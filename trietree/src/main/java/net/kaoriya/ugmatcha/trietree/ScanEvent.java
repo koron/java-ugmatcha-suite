@@ -6,5 +6,5 @@ public class ScanEvent {
 
     public char label;
 
-    public int[] ids;
+    public NodeInfo[] nodes;
 }

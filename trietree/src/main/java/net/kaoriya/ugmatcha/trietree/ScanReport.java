@@ -1,37 +1,33 @@
 package net.kaoriya.ugmatcha.trietree;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 class ScanReport {
     final Consumer<ScanEvent> consumer;
     final ScanEvent ev = new ScanEvent();
 
-    final int[] ids;
+    final ArrayList<NodeInfo> nodes = new ArrayList<>();
     int idx;
 
     ScanReport(Consumer<ScanEvent> consumer, int len) {
         this.consumer = consumer;
-        this.ids = new int[len];
     }
 
     void reset(int index, char label) {
         ev.index = index;
         ev.label = label;
-        idx = 0;
+        nodes.clear();
     }
 
-    void add(int id) {
-        ids[idx] = id;
-        idx++;
+    void add(int id, int level) {
+        nodes.add(new NodeInfo(id, level));
     }
 
     void emit() {
-        // setup ev.ids
-        if (idx == 0) {
-            ev.ids = null;
-        } else {
-            ev.ids = Arrays.copyOf(ids, idx);
+        ev.nodes = null;
+        if (nodes.size() > 0) {
+            ev.nodes = nodes.toArray(new NodeInfo[0]);
         }
         consumer.accept(ev);
     }

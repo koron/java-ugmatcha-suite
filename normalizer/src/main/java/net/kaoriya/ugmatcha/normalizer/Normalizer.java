@@ -119,11 +119,8 @@ public class Normalizer {
                 if (debug) {
                     System.out.printf("  index=%d level=%d start=%d\n", ev.index, info.level, start);
                 }
-                int last = ev.index;
-                if (ids[start] == 0 || last > lasts[start]) {
-                    ids[start] = info.id;
-                    lasts[start] = last;
-                }
+                ids[start] = info.id;
+                lasts[start] = ev.index;
             }
         }
 

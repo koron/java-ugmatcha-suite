@@ -16,7 +16,7 @@ public class DynamicTree {
         int C = k.codePointCount(0, k.length());
         for (int i = 0; i < C; i++) {
             int cp = k.codePointAt(i);
-            n = n.dig(k.codePointAt(i));
+            n = n.dig(cp);
         }
         if (n.edgeID <= 0) {
             lastEdgeID++;

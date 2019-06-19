@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+dependencies {
+    compile project(':trietree')
+    compile project(':normalizer')
+    testImplementation 'junit:junit:4.12'
+}
+
+task matchDemo(type: JavaExec) {
+    main = "net.kaoriya.ugmatcha.wikidict.Matcher"
+    classpath = sourceSets.main.runtimeClasspath
+    if (project.hasProperty('args')) {
+        args project.args.split('\\s+');
+    }
+}

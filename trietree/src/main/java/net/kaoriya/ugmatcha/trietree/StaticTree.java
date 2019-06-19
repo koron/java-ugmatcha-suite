@@ -1,5 +1,7 @@
 package net.kaoriya.ugmatcha.trietree;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -12,7 +14,7 @@ public class StaticTree {
     public final int[] fails;
     public final int[] edges;
 
-    public final int[] levels;
+    public /*final*/ int[] levels;
 
     class Filler {
         int z;
@@ -132,5 +134,36 @@ public class StaticTree {
         out.println(Arrays.toString(fails));
         out.println(Arrays.toString(edges));
         out.println(Arrays.toString(levels));
+    }
+
+    // load a StaticTree from InputStream.
+    public static StaticTree load(InputStream is) throws IOException {
+        Reader r = new Reader(is);
+
+        // read nodes.
+        long n = r.readLong();
+        if (n > Integer.MAX_VALUE || n < 0) {
+            throw new IOException(String.format("too large tree for Java: %d", n));
+        }
+        StaticTree st = new StaticTree((int)n, 0);
+        for (int i = 0; i < (int)n; i++) {
+            st.labels[i] = r.readRune();
+            st.starts[i] = r.readInt();
+            st.ends[i] = r.readInt();
+            st.fails[i] = r.readInt();
+            st.edges[i] = r.readInt();
+        }
+
+        // read levels.
+        long n2 = r.readLong();
+        if (n2 > Integer.MAX_VALUE || n2 < 0) {
+            throw new IOException(String.format("too large levels for Java: %d", n2));
+        }
+        st.levels = new int[(int)n2];
+        for (int i = 0; i < (int)n2; i++) {
+            st.levels[i] = r.readInt();
+        }
+
+        return st;
     }
 }

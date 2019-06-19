@@ -1,5 +1,7 @@
 package net.kaoriya.ugmatcha.trietree;
 
+import java.io.FileInputStream;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -72,5 +74,13 @@ public class StaticTreeTest {
                 new ReportT(2, 'c', 2, 2),
                 new ReportT(3, 'd', 4, 1),
                 new ReportT(4, 'e', 5, 5));
+    }
+
+    //@Test
+    public void load() throws Exception {
+        StaticTree st;
+        try (FileInputStream fs = new FileInputStream("../tmp/wikiwords.stt");) {
+            st = StaticTree.load(fs);
+        }
     }
 }

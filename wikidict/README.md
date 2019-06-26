@@ -109,6 +109,9 @@ wikidict の実行環境にデプロイしてください。
 
 **TO BE WRITTEN**
 
+まだレポジトリの準備が整っていないので、
+下記の自分でjarファイルをビルドする方法を参照してください。
+
 ### 2-2. 辞書ファイルを指定して `Matcher` を作成する
 
 以下に `wikidict.Matcher` を作成するスニペットを示します。
@@ -179,5 +182,28 @@ public void printMatches(Matcher m, File f) throws IOException {
   }
 }
 ```
+
+## wikidict を自分でビルドしてjarを利用する
+
+wikidict のビルドには Java 8 以上のSDKが必須です。
+動作確認は OpenJDK 11 で行っています。
+
+1.  git でソースコードを取得する
+
+        $ git clone https://github.com/koron/java-ugmatcha-suite.git
+
+2.  ビルドする
+
+        $ cd java-ugmatcha-suite
+        $ ./gradlew build
+
+3.  Jarファイルをコピーする
+
+    Jarファイルを自分のプロジェクトにコピーする。
+    コピー対象は以下の3つ。
+
+    *   trietree/build/libs/trietree.jar
+    *   normalizer/build/libs/normalizer.jar
+    *   wikidict/build/libs/wikidict.jar
 
 [wpwordtool]:https://github.com/koron/wpwordtool

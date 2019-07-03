@@ -9,7 +9,7 @@ buildscript {
 
 subprojects {
     group = 'net.kaoriya.ugmatcha'
-    version = '0.0.1'
+    version = '0.0.2'
 
     apply plugin: 'java'
     apply plugin: 'maven'
@@ -21,6 +21,10 @@ subprojects {
 
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
+
+    javadoc {
+        options.encoding = "UTF-8"
+    }
 
     repositories {
         jcenter()
@@ -36,6 +40,10 @@ subprojects {
     task javadocJar(type: Jar, dependsOn: javadoc) {
         classifier = 'javadoc'
         from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar, javadocJar
     }
 
     bintray {

@@ -7,7 +7,7 @@ subprojects {
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
 
-    group = 'net.kaoriya'
+    group = 'net.kaoriya.ugmatcha'
 
     repositories {
         jcenter()

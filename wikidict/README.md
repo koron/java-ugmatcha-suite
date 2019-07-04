@@ -107,10 +107,34 @@ wikidict の実行環境にデプロイしてください。
 
 ### 2-1. レポジトリと依存関係の設定
 
-**TO BE WRITTEN**
+#### gradle の設定
 
-まだレポジトリの準備が整っていないので、
-下記の自分でjarファイルをビルドする方法を参照してください。
+以下の設定をあなたの build.gradle ファイルにマージしてください。
+
+```gradle
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'net.kaoriya.ugmatcha:wikidict:0.0.2'
+}
+```
+
+#### maven の設定
+
+以下の設定をあなたの pom.xml ファイルにマージしてください。
+
+```xml
+<dependency>
+    <groupId>net.kaoriya.ugmatcha</groupId>
+    <artifactId>wikidict</artifactId>
+    <version>0.0.2</version>
+    <type>pom</type>
+</dependency>
+```
+
+注: 別途 jcenter.bintray.com の repository を追加しておく必要があります。
 
 ### 2-2. 辞書ファイルを指定して `Matcher` を作成する
 

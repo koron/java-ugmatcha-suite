@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    compile project(':wikidict')
+}
+
+task benchmarkMatcher(type: JavaExec) {
+    main = "net.kaoriya.ugmatcha.wikidict.benchmark.BenchmarkMatcher"
+    classpath = sourceSets.main.runtimeClasspath
+    if (project.hasProperty('args')) {
+        args project.args.split('\\s+');
+    }
+}

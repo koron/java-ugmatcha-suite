@@ -89,7 +89,7 @@ public class Matcher {
     public static void main(String[] args) throws Exception {
         Matcher m = load(new File("../tmp/wikiwords"));
         for (String fn : args) {
-            System.err.printf("matching against file:%s", fn);
+            System.err.printf("matching against file:%s\n", fn);
             m.matchDemo(new File(fn));
         }
     }

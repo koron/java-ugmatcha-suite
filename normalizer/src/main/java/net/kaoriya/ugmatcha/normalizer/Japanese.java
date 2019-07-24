@@ -56,7 +56,7 @@ public class Japanese {
             lastUB = ub;
         }
         // trim a trail space if exists.
-        if (lastSpace) {
+        if (lastSpace && dst.length() > 0) {
             dst.setLength(dst.length() - 1);
         }
         return dst.toString();

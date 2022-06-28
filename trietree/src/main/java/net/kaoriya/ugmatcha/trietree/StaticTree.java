@@ -166,4 +166,30 @@ public class StaticTree {
 
         return st;
     }
+
+    /**
+     * longestPrefix finds a longest prefix against given s string.
+     */
+    public String longestPrefix(String s) {
+        int last = -1;
+        int ilast = 0;
+        int curr = 0;
+        int C = s.codePointCount(0, s.length());
+        for (int i = 0; i < C; i++) {
+            int cp = s.codePointAt(i);
+            int next = find(starts[curr], ends[curr], cp);
+            if (next < 0) {
+                break;
+            }
+            if (edges[next] > 0) {
+                last = next;
+                ilast = i + 1;
+            }
+            curr = next;
+        }
+        if (last < 0) {
+            return null;
+        }
+        return s.substring(0, ilast);
+    }
 }

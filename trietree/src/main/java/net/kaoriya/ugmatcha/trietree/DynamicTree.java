@@ -102,4 +102,30 @@ public class DynamicTree {
             curr = next;
         }
     }
+
+    /**
+     * longestPrefix finds a longest prefix against given s string.
+     */
+    public String longestPrefix(String s) {
+        DynamicNode last = null;
+        int ilast = 0;
+        DynamicNode curr = root;
+        int C = s.codePointCount(0, s.length());
+        for (int i = 0; i < C; i++) {
+            int cp = s.codePointAt(i);
+            DynamicNode next = curr.get(cp);
+            if (next == null) {
+                break;
+            }
+            if (next.edgeID > 0) {
+                last = root;
+                ilast = i + 1;
+            }
+            curr = next;
+        }
+        if (last == null) {
+            return null;
+        }
+        return s.substring(0, ilast);
+    }
 }

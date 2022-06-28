@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.kaoriya.ugmatcha:wikidict:0.0.2'
+    implementation 'net.kaoriya.ugmatcha:wikidict:0.0.2'
 }
 ```
 
@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.kaoriya.ugmatcha:wikidict:0.0.2'
+    implementation 'net.kaoriya.ugmatcha:wikidict:0.0.2'
 }
 ```
 

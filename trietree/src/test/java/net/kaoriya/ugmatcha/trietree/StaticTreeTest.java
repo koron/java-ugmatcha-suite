@@ -83,4 +83,22 @@ public class StaticTreeTest {
             st = StaticTree.load(fs);
         }
     }
+
+    @Test
+    public void longestPrefix() {
+        StaticTree tree = put("ab", "bc", "bab", "d", "abcde");
+        assertEquals(null, tree.longestPrefix("a"));
+        assertEquals("ab", tree.longestPrefix("ab"));
+        assertEquals("ab", tree.longestPrefix("abc"));
+        assertEquals("abcde", tree.longestPrefix("abcdefg"));
+
+        assertEquals(null, tree.longestPrefix("b"));
+        assertEquals("bc", tree.longestPrefix("bc"));
+        assertEquals("bc", tree.longestPrefix("bczzz"));
+        assertEquals("bab", tree.longestPrefix("babbab"));
+
+        assertEquals(null, tree.longestPrefix("bac"));
+        assertEquals(null, tree.longestPrefix("bbc"));
+        assertEquals(null, tree.longestPrefix("zzz"));
+    }
 }

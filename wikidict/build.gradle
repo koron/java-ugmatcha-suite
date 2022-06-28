@@ -1,8 +1,8 @@
 apply plugin: 'java-library'
 
 dependencies {
-    compile project(':trietree')
-    compile project(':normalizer')
+    implementation project(':trietree')
+    implementation project(':normalizer')
     testImplementation 'junit:junit:4.12'
 }
 

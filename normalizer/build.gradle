@@ -1,6 +1,6 @@
 apply plugin: 'java-library'
 
 dependencies {
-    compile project(':trietree')
+    implementation project(':trietree')
     testImplementation 'junit:junit:4.12'
 }

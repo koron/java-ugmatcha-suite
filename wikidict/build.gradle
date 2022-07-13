@@ -1,4 +1,15 @@
-apply plugin: 'java-library'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+//group = 'net.kaoriya.ugmatcha'
+archivesBaseName = 'wikidict'
+//version = '0.0.3'
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     implementation project(':trietree')
@@ -11,5 +22,23 @@ task matchDemo(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     if (project.hasProperty('args')) {
         args project.args.split('\\s+');
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/koron/java-ugmatcha-suite")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
     }
 }

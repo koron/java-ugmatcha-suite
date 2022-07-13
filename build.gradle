@@ -1,20 +1,8 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-    }
-}
-
 subprojects {
     group = 'net.kaoriya.ugmatcha'
-    version = '0.0.2'
+    version = '0.0.3'
 
     apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply plugin: 'com.jfrog.bintray'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -24,10 +12,6 @@ subprojects {
 
     javadoc {
         options.encoding = "UTF-8"
-    }
-
-    repositories {
-        jcenter()
     }
 
     // custom tasks for creating source jars
@@ -40,35 +24,5 @@ subprojects {
     task javadocJar(type: Jar, dependsOn: javadoc) {
         classifier = 'javadoc'
         from javadoc.destinationDir
-    }
-
-    artifacts {
-        archives sourcesJar, javadocJar
-    }
-
-    bintray {
-        user = project.hasProperty('bintray_user') ? bintray_user : ''
-        key = project.hasProperty('bintray_key') ? bintray_key : ''
-        configurations = [ 'archives' ]
-
-        pkg {
-            repo = 'maven'
-            name = project.group + '.' + project.name
-            licenses = ['Apache-2.0', 'MIT']
-            websiteUrl = 'https://github.com/koron/java-ugmatcha-suite'
-            issueTrackerUrl = 'https://github.com/koron/java-ugmatcha-suite/issues'
-            vcsUrl = 'https://github.com/koron/java-ugmatcha-suite.git'
-            version {
-                name = project.version
-            }
-        }
-    }
-
-    install {
-        repositories.mavenInstaller {
-            pom.project {
-                name project.name
-            }
-        }
     }
 }

@@ -3,9 +3,13 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'net.kaoriya.ugmatcha'
+//group = 'net.kaoriya.ugmatcha'
 archivesBaseName = 'trietree'
-version = '0.0.3'
+//version = '0.0.3'
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     testImplementation 'junit:junit:4.12'

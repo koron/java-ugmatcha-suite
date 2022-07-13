@@ -1,6 +1,14 @@
 # trietree package
 
+trietree is an implementation of trie for Java.
+It provides some text matching algorithms.
+
+* Aho-Corasick
+* Longest prefix match
+
 ## Getting started
+
+See [pre-requirements](#pre-requirements) also.
 
 ### Logest prefix match
 
@@ -131,3 +139,15 @@ Please read [public document](https://docs.github.com/en/packages/guides/configu
 
 Please read [public document](https://docs.github.com/en/packages/guides/configuring-gradle-for-use-with-github-packages) also. ([Japanese](https://docs.github.com/ja/packages/guides/configuring-gradle-for-use-with-github-packages)).
 
+## How to release
+
+1. update `version` in build.gradle
+2. `./gradlew test`
+3. `./gradlew publish`
+
+    Set these properties with correct values in ~/.gradle/gradle.properties
+
+    ```props
+    gpr.user=
+    gpr.key=
+    ```

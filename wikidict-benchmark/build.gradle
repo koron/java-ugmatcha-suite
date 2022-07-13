@@ -1,4 +1,8 @@
-apply plugin: 'java-library'
+plugins {
+    id 'java-library'
+}
+
+archivesBaseName = 'wikidict-benchmark'
 
 dependencies {
     implementation project(':wikidict')

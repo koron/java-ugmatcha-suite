@@ -42,8 +42,6 @@ st.longestPrefix("foo");    // returns "foo"
 
 ### Find all words in a text
 
-**To be Written**
-
 ```java
 import net.kaoriya.ugmatcha.trietree.DynamicTree;
 import net.kaoriya.ugmatcha.trietree.ScanEvent;
@@ -60,6 +58,10 @@ dt.scan("foo bar baz", (ScanEvent ev) -> {
   // detects "foo", "bar", "baz"
 });
 ```
+
+1. create a `DynamicTree`
+2. add words to match
+3. call `scan()` method with a consumer.
 
 ## Pre-requirements
 

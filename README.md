@@ -1,5 +1,13 @@
 # ugmatcha suite
 
+ugmatcha suite consists of these sub projects:
+
+1. [wikidict](./wikidict)
+2. [normalizer](./normalizer)
+3. [trietree](./trietree)
+
+See each projects for details.
+
 ## Pre-requirements
 
 java-ugmatcha-suite/trietree is available on [GitHub Packages][gp].
